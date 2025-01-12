@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stake Game - Play and Win Cash Prizes</title>
+    <meta
+      name="description"
+      content="Play the new generation Stake Game and Tic-Tac-Toe. Add a bet and win cash prizes. Enjoy a fun and engaging gaming experience."
+    />
+    <meta
+      name="keywords"
+      content="Stake Game, Tic-Tac-Toe, Bet, Win Cash, Online Games, Fun Games"
+    />
+    <meta property="og:title" content="Stake Game - Play and Win Cash Prizes" />
+    <meta
+      property="og:description"
+      content="Play the new generation Stake Game and Tic-Tac-Toe. Add a bet and win cash prizes. Enjoy a fun and engaging gaming experience."
+    />
+    <link rel="manifest" href="/stake-with-saket/manifest.json" />
+    <script type="module" crossorigin src="/stake-with-saket/assets/index-KEA7Ocw3.js"></script>
+    <link rel="stylesheet" crossorigin href="/stake-with-saket/assets/index-Ca4e-Wi1.css">
+  <link rel="manifest" href="/stake-with-saket/manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="/stake-with-saket/registerSW.js"></script></head>
+  <body>
+    <div id="root"></div>
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker
+            .register("/service-worker.js")
+            .then((registration) => {
+              console.log(
+                "ServiceWorker registration successful with scope: ",
+                registration.scope
+              );
+            })
+            .catch((error) => {
+              console.log("ServiceWorker registration failed: ", error);
+            });
+        });
+      }
+    </script>
+  </body>
+</html>

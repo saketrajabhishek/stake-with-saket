@@ -1,0 +1,1 @@
+if('serviceWorker' in navigator) {window.addEventListener('load', () => {navigator.serviceWorker.register('/stake-with-saket/sw.js', { scope: '/stake-with-saket/' })})}
