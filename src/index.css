@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+  background-color: #97999c; /* Light Mode Background (Soft Gray) */
+  color: #111827; /* Light Mode Text */
+}
+
+html.dark {
+  background-color: #4b5563; /* Dark Mode Background (Cool Gray) */
+  color: #f3f4f6; /* Dark Mode Text */
+}
