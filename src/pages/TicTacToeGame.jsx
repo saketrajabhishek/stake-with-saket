@@ -5,19 +5,24 @@ import { motion } from "framer-motion";
 const TicTacToeGame = () => {
   const [board, setBoard] = useState(Array(9).fill(null));
   const [isXNext, setIsXNext] = useState(true); // Computer plays first as "X"
+  const [loading, setLoading] = useState(false); // Loading state for computer's turn
 
   useEffect(() => {
-    if (isXNext) {
-      const bestMove = findBestMove(board);
-      const newBoard = board.slice();
-      newBoard[bestMove] = "X";
-      setBoard(newBoard);
-      setIsXNext(false);
+    if (isXNext && !loading) {
+      setLoading(true);
+      setTimeout(() => {
+        const bestMove = findBestMove(board);
+        const newBoard = board.slice();
+        newBoard[bestMove] = "X";
+        setBoard(newBoard);
+        setIsXNext(false);
+        setLoading(false);
+      }, 1000); // Simulate computer thinking time
     }
-  }, [isXNext, board]);
+  }, [isXNext, board, loading]);
 
   const handleClick = (index) => {
-    if (board[index] || calculateWinner(board) || isXNext) return;
+    if (board[index] || calculateWinner(board) || isXNext || loading) return;
 
     const newBoard = board.slice();
     newBoard[index] = "O";
@@ -124,6 +129,7 @@ const TicTacToeGame = () => {
   const resetGame = () => {
     setBoard(Array(9).fill(null));
     setIsXNext(true);
+    setLoading(false);
   };
 
   const winner = calculateWinner(board);
@@ -131,7 +137,9 @@ const TicTacToeGame = () => {
     ? `Winner: ${winner}`
     : !isMovesLeft(board)
     ? "Draw"
-    : `Next player: ${isXNext ? "X" : "O"}`;
+    : loading
+    ? "Computer is playing..."
+    : `Next player: ${isXNext ? "X (Computer)" : "O (You)"}`;
 
   return (
     <div className="tic-tac-toe-container p-4 flex flex-col items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
@@ -145,6 +153,7 @@ const TicTacToeGame = () => {
             onClick={() => handleClick(index)}
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
+            disabled={loading} // Disable buttons while loading
           >
             {value}
           </motion.button>
